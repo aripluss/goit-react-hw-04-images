@@ -1,5 +1,5 @@
 # Застосунок пошуку зображень за ключовим словом
 
-Використовується REST API, axios.
+Використовуються React Hooks, REST API, axios.
 
-[Жива сторінка](https://aripluss.github.io/goit-react-hw-03-image-finder/)
+[Жива сторінка](https://aripluss.github.io/goit-react-hw-04-image-finder/)

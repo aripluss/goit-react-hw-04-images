@@ -1,43 +1,37 @@
 import PropTypes from 'prop-types';
-import { Component } from 'react';
+import { useEffect } from 'react';
 import { ModalOverlay } from './Modal.styled';
 
-export default class Modal extends Component {
-  componentDidMount() {
-    window.addEventListener('keydown', this.closeModal);
-  }
+export default function Modal({
+  toggleModal = () => {},
+  content: { img, alt },
+}) {
+  useEffect(() => {
+    window.addEventListener('keydown', closeModal);
 
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.closeModal);
-  }
+    return () => {
+      window.removeEventListener('keydown', closeModal);
+    };
+  });
 
-  closeModal = event => {
-    console.log('event.target', event.target);
-    console.log('event.currentTarget', event.currentTarget);
-
+  const closeModal = event => {
     if (
       // event.target.nodeName !== 'IMG' ||
       // event.target.classList.contains('overlay') ||
       event.target === event.currentTarget ||
       event.key === 'Escape'
     ) {
-      this.props.toggleModal();
+      toggleModal();
     }
   };
 
-  render() {
-    return (
-      <ModalOverlay onClick={this.closeModal} className="overlay">
-        <div className="modal">
-          <img
-            src={this.props.content.img}
-            alt={this.props.content.alt}
-            loading="lazy"
-          />
-        </div>
-      </ModalOverlay>
-    );
-  }
+  return (
+    <ModalOverlay onClick={closeModal} className="overlay">
+      <div className="modal">
+        <img src={img} alt={alt} loading="lazy" />
+      </div>
+    </ModalOverlay>
+  );
 }
 
 Modal.propTypes = {
