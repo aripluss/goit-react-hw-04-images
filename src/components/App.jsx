@@ -51,7 +51,8 @@ export default function App() {
         setTotalImages(totalImages);
         setError(null);
 
-        if (images.length > 1 && images.length < 12) {
+        if (page >= Math.ceil(totalImages / 12)) {
+          // if (images.length > 1 && images.length < 12) {
           setError("Sorry. That's all we could find. 😭");
         }
       } catch (error) {
