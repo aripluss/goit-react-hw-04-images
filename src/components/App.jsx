@@ -72,21 +72,19 @@ export default function App() {
   }, [error]);
 
   const getByQuery = ({ value }) => {
-    const trimmedValue = value.trim();
-
-    if (!trimmedValue) {
+    if (!value) {
       setError('Type something. 👉👈');
       return;
     }
 
-    if (trimmedValue === query) {
+    if (value === query) {
       setError(
         'You are already seeing the image by this query. Please, change your request. 🔄'
       );
       return;
     }
 
-    setQuery(trimmedValue);
+    setQuery(value);
     setPage(1);
     setImages([]);
     setTotalImages(0);

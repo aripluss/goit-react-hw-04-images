@@ -16,7 +16,8 @@ export default function SearchBar({ onSubmit = () => {} }) {
   const handleSubmit = event => {
     event.preventDefault();
 
-    onSubmit({ value });
+    const normalizedValue = value.trim().toLowerCase();
+    onSubmit({ value: normalizedValue });
 
     setValue('');
   };
